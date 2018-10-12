@@ -3,6 +3,7 @@ var viesuApp = angular.module('viesuApp', []);
 
 viesuApp.controller('viesiCtrl', function($scope, $http) {
 	$scope.forma = {};
+	var resp = {};
 	var currentPage = 0;
 	var nextPage = 10;
 	var page = 10;
@@ -43,7 +44,7 @@ viesuApp.controller('viesiCtrl', function($scope, $http) {
 	//GET ierakstus
 	$http.get("viesi")
 	.then(function(response) {
-		var resp = response.data;
+		resp = response.data;
 
 		var count = resp.length;
 
@@ -122,8 +123,12 @@ viesuApp.controller('viesiCtrl', function($scope, $http) {
 			//atjaunot ierakstus
 			$http.get("viesi")
 			.then(function(response) {
-				var resp = response.data;
+				resp = response.data;
+				var count = resp.length;
+				var pageTotal =  Math.ceil(count/page);
+
 				$scope.viesi = resp.slice(currentPage,nextPage);
+				$scope.pageTotal = "/" + pageTotal;
 			}, function(response) {
 				$scope.viesi = "Radās kļūda parādot datus!";
 			});

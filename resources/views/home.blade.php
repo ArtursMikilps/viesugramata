@@ -47,7 +47,6 @@
 <div class="form" style="width: 30%;margin: 0 auto;">
   <h1> @{{atbilde}}</h1>
 
-  <!-- FORM -->
 
   <form name="userForm" ng-submit="submitForm()" novalidate>
     <div class="form-group">
